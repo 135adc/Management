@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
-
-
+  <div>
+   <h1>主页面</h1>
+   
     <!-- 路由出口 -->
     <!-- 路由匹配到的组件将渲染在这里 -->
   <router-view></router-view>
@@ -9,13 +9,8 @@
 </template>
 
 <script>
-
-
 export default {
-  name: 'App',
-  components: {
-  
-  }
+
 }
 </script>
 

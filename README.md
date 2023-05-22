@@ -44,3 +44,26 @@ const routes = [
 在App.vue中的路由出口是主路由的,子路由应该在主路由的文件中,添加
 路由的渲染出口
  <router-view></router-view>
+
+# 5.22
+
+### 代码格式化
+prettier设置
+
+### element-ui
+https://element.eleme.cn/#/zh-CN/component/menu
+
+### 安装less解析器
+npm i less@4.1.2 --save
+npm i less-loader@6.0.0 --save
+
+### scoped
+该样式只在使用的页面起作用,不加的话,就是全局都起作用
+
+### 重定向   redirect
+ path: '/',
+        component: Mian,
+        重定向,匹配为/时,直接跳转到home
+        redirect:'/home',
+### this.$router.push()
+路由跳转方法.传入本地路径,通过对应的数据进行跳转

@@ -3,7 +3,7 @@
     <el-menu default-active="1-4-1" class="el-menu-vertical-demo" 
     @open="handleOpen" 
     @close="handleClose" 
-    :collapse="isCollapse"
+    :collapse="isCollapse()"
     background-color="#545c64"
     text-color="#fff"
     active-text-color="#ffd04b">
@@ -32,8 +32,8 @@
     export default {
       data() {
         return {
-          // 是否水平折叠收起菜单
-          isCollapse: false,
+      
+     
           // aside样式数据
           menuData:[
             {
@@ -97,8 +97,22 @@
         handleClose(key, keyPath) {
           console.log(key, keyPath);
         },
+        //在路由跳转时,如果跳转的路径是当前的路径,会报错
+        //我们在跳转前,进行验证
+        //首页/重定向到home时点击会报错
         clickMenu(item){
-              this.$router.push(item.path)
+          // $route为本页的路由
+          //$router为全局的路由实例
+          if(this.$route.path!=item.path &&!(this.$route.path==='/home' && (item.path==='/')))
+          {
+            this.$router.push(item.path)
+          }   
+        },
+        isCollapse(){
+              // 是否水平折叠收起菜单
+              //返回一个bool值
+              //tab状态模块化
+          return this.$store.state.tab.isCollapse
         }
       }
     }

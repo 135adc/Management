@@ -67,3 +67,27 @@ npm i less-loader@6.0.0 --save
         redirect:'/home',
 ### this.$router.push()
 路由跳转方法.传入本地路径,通过对应的数据进行跳转
+
+# 5.23
+
+### $route和$router
+$route是指当前路由
+$router是全局的总路由
+
+
+### UI 下拉菜单
+el-dropdown
+
+### vuex3.6.2
+npm insatll vuex@3.6.2 
+
+store文件夹
+ -index.js主状态文件
+ -tab.js导航栏状态文件
+
+export default ****{} 暴露出去
+
+import 引入
+
+### 配置数据
+我们通过函数返回出去一个值作为数据,相当于data中的数据

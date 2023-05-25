@@ -7,7 +7,7 @@
     background-color="#545c64"
     text-color="#fff"
     active-text-color="#ffd04b">
-    <h3>Vue后台管理系统</h3>
+    <h3> {{ isCollapse()?'后台':'Vue后台管理系统'}}</h3>
       <el-menu-item  v-for="item in noChildren" :key="item.name" @click="clickMenu(item)" :index="item.name">
         <!-- :key和:index为唯一值 -->
         <i :class="`el-icon-${item.icon}`"></i>
@@ -123,15 +123,25 @@
   width: 200px;
   min-height: 400px;
 }
+// .el-menu:not(.el-menu--collapse) {   
+//     width: 200px;  
+//     min-height: 400px;    
+//   }
 .el-menu{
+    border-right: none;
     height: 100vh;
     
     h3{
+    height: 48px;
     color: aliceblue;
     text-align: center;
     line-height: 48px;
     font-size: 16px;
     font-weight: 400;
   }
+
+  
   }
+
+
 </style>

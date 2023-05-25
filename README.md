@@ -91,3 +91,49 @@ import 引入
 
 ### 配置数据
 我们通过函数返回出去一个值作为数据,相当于data中的数据
+
+# 5.24
+<h3> {{ isCollapse()?'后台':'Vue后台管理系统'}}</h3>
+
+# 5.25
+### 栅格布局
+一共将屏幕分为24份.
+行
+<el-row>
+<el-col :span='8'>
+</el-col>
+<el-col :span='16'>
+</el-col>
+</el-row>
+
+### v-for遍历对象,(val,key) in list :key='key'
+遍历的是键值对
+val是值,key是键
+
+### axios安装
+npm insatll axios@0.27.2
+
+### axios封装
+### api请求
+返回一个promise对象,用then接收,得到数据
+
+### 安装Mock.js
+npm install mockjs@1.1.0
+定义mock的数据
+Mock.mock('/api/home/getdata',home.getStatisticalData)
+
+### 数据解构
+  getdata().then((data)=>{
+     console.log(data);
+     this.tableData=data.data.data.tableData
+   })
+
+//解构写法
+  getdata().then(({data})=>{
+    console.log(data.data);
+    const {tableData}=data.data
+    this.tableData=tableData
+  })
+
+  ### 安装echarts
+npm i echarts@5.1.2 --save

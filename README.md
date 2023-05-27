@@ -137,3 +137,9 @@ Mock.mock('/api/home/getdata',home.getStatisticalData)
 
   ### 安装echarts
 npm i echarts@5.1.2 --save
+
+### vue中获取dom
+在标签上加上 ref='***'
+
+在状态中获取 this.$refs.***
+###echarts的折线图,柱状图,扇形图的引入

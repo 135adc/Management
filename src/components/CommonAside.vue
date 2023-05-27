@@ -106,7 +106,9 @@
           if(this.$route.path!=item.path &&!(this.$route.path==='/home' && (item.path==='/')))
           {
             this.$router.push(item.path)
-          }   
+          }
+          //调用vuex中的mutations的selectMenu函数并键路由信息传递过去
+          this.$store.commit('selectMenu',item)  
         },
         isCollapse(){
               // 是否水平折叠收起菜单
@@ -129,7 +131,7 @@
 //   }
 .el-menu{
     border-right: none;
-    height: 100vh;
+    height: 100vw;
     
     h3{
     height: 48px;

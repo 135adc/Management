@@ -3,8 +3,13 @@
     <div class="l-content">
         <el-button  @click="handlerMenu" icon="el-icon-menu" size="mini"></el-button>
         <!-- 面包屑 -->
-        <span class="text">首页</span>
+        <!-- <span class="text">首页</span> -->
+
+        <el-breadcrumb separator="/">
+            <el-breadcrumb-item  v-for="item in tags" :key="item.name"  :to="{ path: item.path }">{{ item.label }}</el-breadcrumb-item>
+        </el-breadcrumb>
     </div>
+
     <div class="r-content">
      <el-dropdown>
         <span class="el-dropdown-link">
@@ -21,12 +26,19 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
 
     methods:{
         handlerMenu(){
             this.$store.commit('collapseMenu')
         }
+    },
+    computed:{
+        //mapState返回一个对象,...对象展开运算符,将tags传给computed属性
+        ...mapState({
+            tags:state => state.tab.tabList
+        })
     }
 }
 </script>
@@ -56,5 +68,25 @@ export default {
 
     }
 
+    .l-content{
+        display: flex;
+        align-items: center;
+       ::v-deep .el-breadcrumb__item{
+           .el-breadcrumb__inner{
+                &.is-link{
+                    color: #12f1f9;
+                }
+           }
+           &:last-child{
+            .el-breadcrumb__inner{
+                color: #09f989;
+            }
+           }
+        }
+
+        .el-breadcrumb{
+            margin-left: 30px;
+        }
+    }
 }
 </style>

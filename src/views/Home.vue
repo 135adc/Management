@@ -178,7 +178,7 @@ methods:{
   //柱状图
   histogram(data){
     //数据,一个数组
-    console.log(data.userData)
+    // console.log(data.userData)
    
     // console.log( data.userData.map(item=>item.date))
     // console.log(data.userData.map(item=>item.new))
@@ -245,7 +245,7 @@ methods:{
   //饼状图
   pieChart(data){
 
-    console.log(data);
+    // console.log(data);
     let echartsShowThree=echarts.init(this.$refs.echartsShowThree)
 
     let pieChartOption={

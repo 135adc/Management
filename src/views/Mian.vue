@@ -8,6 +8,7 @@
     <el-header>
     <common-header></common-header>
     </el-header>
+    <common-tags></common-tags>
     <el-main>
       <!-- 路由出口 -->
       <!-- 路由匹配到的组件将渲染在这里 -->
@@ -21,6 +22,7 @@
 <script>
 import CommonAside from '../components/CommonAside.vue';
 import CommonHeader from '../components/CommonHeader.vue';
+import CommonTags from '../components/CommonTags.vue';
 export default {
 data() {
   return {
@@ -29,7 +31,8 @@ data() {
 },
 components:{
   CommonAside,
-  CommonHeader
+  CommonHeader,
+  CommonTags
 },
 methods:{
   

@@ -24,8 +24,8 @@
         <el-menu-item :index="Subitem.name" @click="clickMenu(Subitem)">{{ Subitem.label }}</el-menu-item>
       </el-menu-item-group>
     </el-submenu>
-   
   </el-menu>
+
  </div>   
 </template>
 <script>
@@ -131,7 +131,7 @@
 //   }
 .el-menu{
     border-right: none;
-    height: 100vw;
+    height: 790px;
     
     h3{
     height: 48px;

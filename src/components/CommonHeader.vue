@@ -3,8 +3,6 @@
     <div class="l-content">
         <el-button  @click="handlerMenu" icon="el-icon-menu" size="mini"></el-button>
         <!-- 面包屑 -->
-        <!-- <span class="text">首页</span> -->
-
         <el-breadcrumb separator="/">
             <el-breadcrumb-item  v-for="item in tags" :key="item.name"  :to="{ path: item.path }">{{ item.label }}</el-breadcrumb-item>
         </el-breadcrumb>

@@ -143,3 +143,40 @@ npm i echarts@5.1.2 --save
 
 在状态中获取 this.$refs.***
 ###echarts的折线图,柱状图,扇形图的引入
+
+# 5.27
+
+### 面包屑的制作
+<el-breadcrumb separator="/">
+    <el-breadcrumb-item  v-for="item in tags" :key="item.name"  :to="{ path: item.path }">{{ item.label }}</el-breadcrumb-item>
+</el-breadcrumb>
+
+### mapState辅助函数
+返回一个对象.用来接收store中的state
+ ...mapState({
+      tags:state => state.tab.tabList
+    })
+对象展开运算符,将对象暴露在计算属性中
+
+### mapMutations辅助函数
+ ...mapMutations(['deleteList'])
+ 获取store中的Mutations中的事件,在methods调用this.***
+
+store中Mutations中的事件,参数为state和调用传递过来的参数
+deleteList(state,index)
+
+### tags使用
+<el-tag
+    v-for="(tag,index) in tags"
+    :key="tag.path"
+    :closable="tag.name!='home'"
+    :type="tag.type"
+    :effect="$route.name===tag.name ? 'dark' : 'plain'"
+    @click="selectMenu(tag)"
+    @close="handleClose(tags,tag,index)"
+    size="mini">
+    {{tag.label}}
+</el-tag>
+
+# 5.28
+### elemen ui中的弹窗,表单,表格

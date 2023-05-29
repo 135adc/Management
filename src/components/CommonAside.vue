@@ -29,55 +29,54 @@
  </div>   
 </template>
 <script>
+import Cookie from 'js-cookie'
     export default {
       data() {
         return {
-      
-     
           // aside样式数据
-          menuData:[
-            {
-              path: '/',
-              name: 'home',
-              label: '首页',
-              icon: 's-home',
-              url: 'Home/Home'
-            },
-            {
-              path: '/mall',
-              name: 'mall',
-              label: '商品管理',
-              icon: 'video-play',
-              url: 'MallManage/MallManage'
-            },
-            {
-              path: '/user',
-              name: 'user',
-              label: '用户管理',
-              icon: 'user',
-              url: 'UserManage/UserManage'
-            },
-            {
-              label: '其他',
-              icon: 'location',
-              children: [
-                {
-                  path: '/pageone',
-                  name: 'page1',
-                  label: '页面1',
-                  icon: 'setting',
-                  url: 'Other/PageOne'
-                },
-                {
-                  path: '/pagetwo',
-                  name: 'page2',
-                  label: '页面2',
-                  icon: 'setting',
-                  url: 'Other/PageTwo'
-                }
-              ]
-            }
-      ]
+      //     menuData:[
+      //       {
+      //         path: '/',
+      //         name: 'home',
+      //         label: '首页',
+      //         icon: 's-home',
+      //         url: 'Home/Home'
+      //       },
+      //       {
+      //         path: '/mall',
+      //         name: 'mall',
+      //         label: '商品管理',
+      //         icon: 'video-play',
+      //         url: 'MallManage/MallManage'
+      //       },
+      //       {
+      //         path: '/user',
+      //         name: 'user',
+      //         label: '用户管理',
+      //         icon: 'user',
+      //         url: 'UserManage/UserManage'
+      //       },
+      //       {
+      //         label: '其他',
+      //         icon: 'location',
+      //         children: [
+      //           {
+      //             path: '/pageone',
+      //             name: 'page1',
+      //             label: '页面1',
+      //             icon: 'setting',
+      //             url: 'Other/PageOne'
+      //           },
+      //           {
+      //             path: '/pagetwo',
+      //             name: 'page2',
+      //             label: '页面2',
+      //             icon: 'setting',
+      //             url: 'Other/PageTwo'
+      //           }
+      //         ]
+      //       }
+      // ]
         };
       },
       computed:{
@@ -88,7 +87,16 @@
 
         hasChildren(){
           return this.menuData.filter(item=>item.children)
+        },
+        // 动态aside样式数据
+        //如果刷新缓存清空,我们需要去cookie中请求数据
+        menuData(){
+          //转化对象
+          //返回1或2,如果一个为空.就返回另外一个
+          console.log(this.$store.state.tab.menu ,'data')
+          return JSON.parse(Cookie.get('menu'))  || this.$store.state.tab.menu
         }
+        
       },
       methods: {
         handleOpen(key, keyPath) {
@@ -107,7 +115,7 @@
           {
             this.$router.push(item.path)
           }
-          //调用vuex中的mutations的selectMenu函数并键路由信息传递过去
+          //调用vuex中的mutations的selectMenu函数并将路由信息传递过去
           this.$store.commit('selectMenu',item)  
         },
         isCollapse(){
@@ -131,7 +139,7 @@
 //   }
 .el-menu{
     border-right: none;
-    height: 790px;
+    height: 100vh;
     
     h3{
     height: 48px;

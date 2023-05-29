@@ -38,8 +38,22 @@
       </span>
     </el-dialog>
 
-    <!-- 新增 -->
-    <el-button type="primary"  @click="stateChange(0)">+ 新增</el-button>
+
+    <div class="form-table">
+          <!-- 新增 -->
+      <el-button type="primary"  @click="stateChange(0)">+ 新增</el-button>
+          <!-- 查询 -->
+      <el-form :inline="true" :model="searchData" class="demo-form-inline">
+        <el-form-item label="">
+          <el-input v-model="searchData.name" placeholder="请输入查询信息"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="onSubmit">查询</el-button>
+        </el-form-item>
+      </el-form>
+
+    </div>
+
     <!-- 表格 -->
     <el-table
       height="90%"
@@ -84,13 +98,17 @@
       </el-table-column>
 
     </el-table>
+
+    <!-- 分页 -->
     <div>
       <el-pagination
         background
         layout="prev, pager, next"
-        :total="total">
+        :total="total"
+        @current-change="handlerPage">
       </el-pagination>
     </div>
+
   </div>
 </template>
 
@@ -130,7 +148,15 @@ export default {
       tableData:[],
       modeltype:0,//0代表新增  1代表编辑
       //数据条数
-      total:0 
+      total:0,
+      //向数据库中请求时,携带的参数
+      pageData:{
+        page:1,
+        limit:10
+      },
+      searchData:{
+        name:''
+      }
     }
   },
   methods:{
@@ -201,14 +227,30 @@ export default {
         });
     },
 
-
     //获取列表数据
     getList(){
-     getUser().then(({data})=>{
+      //参数以对象形式传递
+      //...this.searchData增加请求的数据的参数,达到过滤的作用
+     getUser({params:{...this.searchData,...this.pageData}}).then(({data})=>{
       this.tableData=data.list
       console.log(data)
       this.total=data.count
     })
+    },
+
+    //当前的页数
+    handlerPage(val){
+      console.log(val)
+      //将当前页面数传递
+      this.pageData.page=val
+      //页面修改时,刷新页面
+      this.getList()
+    },
+
+    //查询
+    onSubmit(){
+      //完成请求的后,刷新页面数据
+      this.getList()
     }
   },
 
@@ -220,6 +262,12 @@ export default {
 
 <style lang="less" scoped>
 .manage{
-  height: 500px;
+  height: 90%;
+  .form-table{
+    display: flex;
+    justify-content:space-between;
+    align-items: start;
+    
+  }
 }
 </style>

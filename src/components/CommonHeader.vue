@@ -9,13 +9,13 @@
     </div>
 
     <div class="r-content">
-     <el-dropdown>
+     <el-dropdown  @command="handleCommand">
         <span class="el-dropdown-link">
          <img class="image" src="../assets/image/OIP-C (1).jpg" alt="">
         </span>
         <el-dropdown-menu slot="dropdown">
             <el-dropdown-item>个人中心</el-dropdown-item>
-            <el-dropdown-item>退出</el-dropdown-item>
+            <el-dropdown-item command="a">退出</el-dropdown-item>
         </el-dropdown-menu>
      </el-dropdown>
 
@@ -24,13 +24,22 @@
 </template>
 
 <script>
+import Cookie from 'js-cookie'
 import { mapState } from 'vuex';
 export default {
 
     methods:{
         handlerMenu(){
             this.$store.commit('collapseMenu')
+        },
+        //登出
+        handleCommand(command) {
+        if(command==='a'){
+            Cookie.remove('token')
+            this.$router.push({name:'login'})
         }
+      }
+
     },
     computed:{
         //mapState返回一个对象,...对象展开运算符,将tags传给computed属性

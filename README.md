@@ -180,3 +180,38 @@ deleteList(state,index)
 
 # 5.28
 ### elemen ui中的弹窗,表单,表格
+
+@事件 :属性
+
+Vuex将数据存储在浏览器,刷新后.数据后清空
+我们可以通过cookie存储这些信息
+
+### 安装cookie
+npm i js-cookie -s
+
+cookie.set('a',a)
+cookie.get('a')
+cookie.remove('a')
+
+cookie中是一行字符串.所以我们在传值时要注意转换
+JSON.stringify(a)===>字符串
+JSON.parse(a)===>还原
+
+那个不为空就返回那个
+return JSON.parse(Cookie.get('menu'))  || this.$store.state.tab.menu
+
+### 路由前置守卫
+router.beforeEach((to,from,next)=>{
+  to:当前页面
+  from:跳转的页面
+  next({})===>传入一个对象
+  next()
+})
+
+### token验证
+我们通过生成特定的token,将token信息传入cookie实现登录验证
+
+### {data} 解构写法
+
+### 路径的正则匹配
+Mock.mock(/api\/user\/get/, user.getUserList)

@@ -8,6 +8,7 @@ import Mian from '../views/Mian.vue'
 import Mall from '../views/Mall.vue'
 import PageOne from '../views/PageOne.vue'
 import PageTwo from '../views/PageTwo.vue'
+import Login from '../views/Login.vue'
 
 Vue.use(VueRouter)
 //1.引入安装和使用
@@ -35,9 +36,14 @@ const routes = [
             { path: 'home',     name:'home',   component: Home }, //首页
             { path: 'user',     name:'user',   component: User }, //用户管理
             { path: 'mall',     name:'mall',   component: Mall }, //商品管理
-            { path: 'pageone',  name:'page1',   component: PageOne }, //页面1
-            { path: 'pagetwo',  name:'page2',   component: PageTwo }  //页面2
+            { path: 'page1',  name:'page1',   component: PageOne }, //页面1
+            { path: 'page2',  name:'page2',   component: PageTwo }  //页面2
         ]
+    },
+    {
+        path:'/login',
+        name:'login',
+        component:Login
     }
 ]
 

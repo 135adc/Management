@@ -23,7 +23,12 @@ export const delUser=(data)=>{
     return http.post('/user/del',data)
 }
 
+
 export const getUser=(params)=>{
     //获取用户信息
     return http.get('/user/get',params)
+}
+
+export const getMenu=(data)=>{
+    return http.post('/permission/getMenu',data)
 }

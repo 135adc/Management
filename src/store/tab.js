@@ -1,3 +1,4 @@
+import Cookie from 'js-cookie'
 export default {
     //定义数据
     state:{
@@ -11,7 +12,9 @@ export default {
             icon: 's-home',
             url: 'Home/Home'
         }
-    ],   
+    ], 
+    //
+    menu:[]  
     },
     //修改状态的方法
     mutations:{
@@ -37,6 +40,14 @@ export default {
         deleteList(state,index){
             // console.log(tag)
             state.tabList.splice(index,1)
+        },
+
+        //登录后的导航栏数据
+        //Vuex中的数据在缓存中,刷新就会清空,我们将数据保存在cookie中
+        setMenu(state,val){
+           state.menu=val 
+           //设置cookie //将对象转化成字符串
+           Cookie.set('menu',JSON.stringify(val))
         }
     }
 }
